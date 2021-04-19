@@ -1,0 +1,1 @@
+let parkhalle = new Parkhalle();
