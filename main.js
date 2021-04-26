@@ -1,1 +1,1 @@
-let parkhalle = new Parkhalle(canvas);
+let parkhalle = new Parkhalle();

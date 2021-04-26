@@ -16,7 +16,7 @@ class Parkplatz
     
     platzZeichnen()
     {  
-        var x = document.createElement("canvas")
+        var x = document.createElement("CANVAS")
         var ctx = x.getContext("2d");
         ctx.beginPath();
         ctx.rect(x, y, 150, 100);
