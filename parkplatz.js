@@ -21,5 +21,6 @@ class Parkplatz
         ctx.beginPath();
         ctx.rect(x, y, 150, 100);
         ctx.stroke();
+        document.body.appendChild(x);
     }
 }
