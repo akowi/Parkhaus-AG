@@ -16,11 +16,11 @@ class Parkplatz
     
     platzZeichnen()
     {  
-        var x = document.createElement("CANVAS")
-        var ctx = x.getContext("2d");
+        var canvas = document.createElement("CANVAS")
+        var ctx = canvas.getContext("2d");
         ctx.beginPath();
-        ctx.rect(x, y, 150, 100);
+        ctx.rect(20, 20, 150, 100);
         ctx.stroke();
-        document.body.appendChild(x);
+        document.body.appendChild(canvas);
     }
 }
