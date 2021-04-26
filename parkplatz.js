@@ -14,9 +14,10 @@ class Parkplatz
         return frei;
     }
     
-    platzZeichnen(canvas)
+    platzZeichnen()
     {  
-        var ctx = canvas.getContext("2d");
+        var x = document.createElement("canvas")
+        var ctx = x.getContext("2d");
         ctx.beginPath();
         ctx.rect(x, y, 150, 100);
         ctx.stroke();

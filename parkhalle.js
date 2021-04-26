@@ -1,8 +1,7 @@
 class Parkhalle
 {
-    constructor(canvas) 
+    constructor() 
     {
-        this.canvas = canvas;
         parkplaetze = [];
 
         this.platzEinfuegen(20,20);
@@ -18,7 +17,7 @@ class Parkhalle
     {
         for(i=0;i<5;i++)
         {
-            parkplaetze[i].platzZeichnen(canvas);
+            parkplaetze[i].platzZeichnen();
         }
     }
 }
