@@ -17,10 +17,10 @@ class Parkplatz
     platzZeichnen(ctx)
     {  
         this.ctx = ctx;
-        //ctx.beginPath();
-        //ctx.rect(20, 20, 150, 100);
-        //ctx.stroke();
-        //ctx.fillStyle = "red";
-        //ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.beginPath();
+        ctx.rect(20, 20, 150, 100);
+        ctx.stroke();
+        ctx.fillStyle = "red";
+        ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }

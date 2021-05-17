@@ -3,20 +3,18 @@ class Parkhalle
     constructor() 
     {
         console.log("pog");
+        
+        
         this.canvas = document.getElementById("canvas");
         var ctx = canvas.getContext('2d');
         this.canvas = 
         {
             width:500,
             height:500
-        };
+        };   
 
-        ctx.beginPath();
-        ctx.rect(20, 20, 150, 100);
-        ctx.stroke();
-
-        
-       
+        let parkplatz = new Parkplatz(20,20);
+        parkplatz.platzZeichnen(ctx);  
     };
 
     platzEinfuegen(x,y)
