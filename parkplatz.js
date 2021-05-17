@@ -14,13 +14,17 @@ class Parkplatz
         return frei;
     }
     
-    platzZeichnen(ctx)
+    platzZeichnen(x,y)
     {  
-        this.ctx = ctx;
+        var canvas = document.createElement('canvas');
+        canvas.width = 2000;
+        canvas.height = 2000;
+
+        var body = document.getElementsByTagName("body")[0];
+        body.appendChild(canvas);
+        var ctx = canvas.getContext("2d");
         ctx.beginPath();
-        ctx.rect(20, 20, 150, 100);
+        ctx.rect(x, y, 150, 100);
         ctx.stroke();
-        ctx.fillStyle = "red";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }

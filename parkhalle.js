@@ -4,17 +4,8 @@ class Parkhalle
     {
         console.log("pog");
         
-        
-        this.canvas = document.getElementById("canvas");
-        var ctx = canvas.getContext('2d');
-        this.canvas = 
-        {
-            width:500,
-            height:500
-        };   
-
         let parkplatz = new Parkplatz(20,20);
-        parkplatz.platzZeichnen(ctx);  
+        parkplatz.platzZeichnen(50,50);  
     };
 
     platzEinfuegen(x,y)
