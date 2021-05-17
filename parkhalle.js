@@ -1,26 +1,38 @@
+var parkplaetze = new Array();
+var ctx = canvasZeichnen();
+
 class Parkhalle
 {
-    constructor() 
+    constructor(anzahl) 
     {
         console.log("pog");
         
-        let parkplatz = new Parkplatz(20,20);
-        parkplatz.platzZeichnen(50,50);  
+        
+        this.plaetzeZeichnen(anzahl);
+        
     };
 
-    platzEinfuegen(x,y)
+    platzEinfuegen(x,y,id)
     {
-        let p1 = new Parkplatz(x,y);
+        let p1 = new Parkplatz(x,y,id);
         parkplaetze.push(p1);
     };
 
-    plaetzeZeichnen()
+    plaetzeZeichnen(anzahl)
     {
-        for(i=0;i<5;i++)
+        
+        var quotient = Math.floor(anzahl/2);
+        var rest = anzahl % 2;
+
+        for(var i=0;i<(quotient + rest);i++)
         {
-            parkplaetze[i].platzZeichnen();
+            var hoehe = 100;
+            var px = 20;
+            var yx = 50 + i*hoehe;
+            this.platzEinfuegen(px,yx,i);
+            parkplaetze[i].platzZeichnen(x,y,ctx);
         }
     };
 }
 
-let parkhalle = new Parkhalle();
+let parkhalle = new Parkhalle(20);
