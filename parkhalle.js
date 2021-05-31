@@ -57,7 +57,7 @@ class Parkhalle
         self =this;
         setInterval(function()
                     {
-                        //self.farbeÄndern();
+                        self.farbeÄndern();
                         self.plaetzeZeichnen(20);
                     }
         ,1000)
