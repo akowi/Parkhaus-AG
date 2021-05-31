@@ -34,17 +34,22 @@ class Parkhalle
 
     farbeÄndern()
     {
-        for(var i=0;i<parkplaetze.length;i++)
-        {
-            if(parkplaetze[i].frei)
-            {
-                parkplaetze[i].frei = false;
-            }
-            else
-            {
-                parkplaetze[i].frei = true;
-            }
-        }
+        var button = document.getElementById("button");
+        button.onclick = function()
+                        {
+                            for(var i=0;i<parkplaetze.length;i++)
+                            {
+                                if(parkplaetze[i].frei)
+                                {
+                                    parkplaetze[i].frei = false;
+                                }
+                                else
+                                {
+                                    parkplaetze[i].frei = true;
+                                }
+                            }
+                        }
+   
     }
     
    update()
