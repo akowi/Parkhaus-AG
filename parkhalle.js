@@ -2,11 +2,8 @@ class Parkhalle
 {
     constructor(anzahl) 
     {
-        console.log("pog");
-        
         this.ctx = canvasZeichnen();
-        this.plaetzeZeichnen(anzahl);
-        
+        this.update();
     }
 
 
@@ -33,6 +30,32 @@ class Parkhalle
                 parkplaetze[i+n*(quotient + rest)].platzZeichnen(px,py,this.ctx);
             }
         }
+    }
+
+    farbeÄndern()
+    {
+        for(var i=0;i<parkplaetze.length;i++)
+        {
+            if(parkplaetze[i].frei)
+            {
+                parkplaetze[i].frei = false;
+            }
+            else
+            {
+                parkplaetze[i].frei = true;
+            }
+        }
+    }
+    
+   update()
+    {
+        self =this;
+        setInterval(function()
+                    {
+                        //self.farbeÄndern();
+                        self.plaetzeZeichnen(20);
+                    }
+        ,1000)
     }
 }
 

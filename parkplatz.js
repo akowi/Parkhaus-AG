@@ -29,7 +29,6 @@ class Parkplatz
     {  
         this.ctx = ctx;
         ctx.beginPath();
-        console.log(this.farbeBestimmen());
         ctx.fillStyle = this.farbeBestimmen();
         ctx.lineWidth = 10;
         ctx.rect(x, y, 150, 100);
