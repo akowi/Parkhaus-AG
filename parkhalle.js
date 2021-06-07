@@ -1,6 +1,6 @@
 class Parkhalle
 {
-    constructor(anzahl) 
+    constructor(anzahl)
     {
         this.ctx = canvasZeichnen();
         this.plaetzeEinfuegen(anzahl);
@@ -14,8 +14,8 @@ class Parkhalle
         parkplaetze.push(p1);
     }
 
- 
-    plaetzeEinfuegen()
+
+    plaetzeEinfuegen(anzahl)
     {
         var quotient = Math.floor(anzahl/2);
         var rest = anzahl % 2;
@@ -42,34 +42,16 @@ class Parkhalle
         }
     }
 
-    farbeÄndern()
-    {
-        button.onclick = function()
-                        {
-                            for(var i=0;i<parkplaetze.length;i++)
-                            {
-                                if(parkplaetze[i].frei)
-                                {
-                                    parkplaetze[i].frei = false;
-                                }
-                                else
-                                {
-                                    parkplaetze[i].frei = true;
-                                }
-                            }
-                        }
-   
-    }
-    
+
+
    update()
     {
         self =this;
         setInterval(function()
                     {
-                        self.farbeÄndern();
+                        //self.farbeÄndern();
                         self.plaetzeZeichnen();
                     }
         ,1000)
     }
 }
-

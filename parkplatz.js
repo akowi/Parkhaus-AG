@@ -30,7 +30,8 @@ class Parkplatz
     {
         var button = document.createElement("button");
         button.className = "button button1";
-        button.translate(x,y);
+        button.style.top = y;
+        button.style.left = x;
         document.body.appendChild(button);
     }
 
