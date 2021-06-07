@@ -3,6 +3,7 @@ class Parkhalle
     constructor(anzahl) 
     {
         this.ctx = canvasZeichnen();
+        this.plaetzeEinfuegen(anzahl);
         this.update();
     }
 
@@ -13,9 +14,9 @@ class Parkhalle
         parkplaetze.push(p1);
     }
 
-    plaetzeZeichnen(anzahl)
+ 
+    plaetzeEinfuegen()
     {
-        
         var quotient = Math.floor(anzahl/2);
         var rest = anzahl % 2;
 
@@ -24,17 +25,25 @@ class Parkhalle
             for(var i=0;i<(quotient + rest);i++)
             {
                 var hoehe = 100;
-                var px = 200+500*n;
-                var py = 50 + i*hoehe;
-                this.platzEinfuegen(px,py,i+n*(quotient + rest));
-                parkplaetze[i+n*(quotient + rest)].platzZeichnen(px,py,this.ctx);
+                var x = 200+500*n;
+                var y = 50 + i*hoehe;
+                this.platzEinfuegen(x,y,i+n*(quotient + rest));
             }
+        }
+    }
+
+    plaetzeZeichnen()
+    {
+        for(var n=0;n<parkplaetze.length;n++)
+        {
+            var x= parkplaetze[n].x;
+            var y =parkplaetze[n].y;
+            parkplaetze[n].platzZeichnen(x,y,this.ctx);
         }
     }
 
     farbeÄndern()
     {
-        var button = document.getElementById("button");
         button.onclick = function()
                         {
                             for(var i=0;i<parkplaetze.length;i++)
@@ -58,7 +67,7 @@ class Parkhalle
         setInterval(function()
                     {
                         self.farbeÄndern();
-                        self.plaetzeZeichnen(20);
+                        self.plaetzeZeichnen();
                     }
         ,1000)
     }
