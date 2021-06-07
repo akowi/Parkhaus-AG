@@ -26,14 +26,7 @@ class Parkplatz
         return farbe;
     }
 
-    knopfZeichnen(x,y)
-    {
-        var button = document.createElement("button");
-        button.className = "button button1";
-        button.style.top = y;
-        button.style.left = x;
-        document.body.appendChild(button);
-    }
+    
 
     platzZeichnen(x,y,ctx)
     {
@@ -44,6 +37,5 @@ class Parkplatz
         ctx.rect(x, y, 150, 100);
         ctx.stroke();
         ctx.fill();
-        this.knopfZeichnen(x,y);
     }
 }

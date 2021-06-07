@@ -14,6 +14,14 @@ class Parkhalle
         parkplaetze.push(p1);
     }
 
+    /*knopfZeichnen(x,y)
+    {
+        var button = document.createElement("button");
+        button.className = "button button1";
+        button.style.top = y;
+        button.style.left = x;
+        document.body.appendChild(button);
+    }*/
 
     plaetzeEinfuegen(anzahl)
     {
