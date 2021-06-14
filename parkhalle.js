@@ -5,6 +5,7 @@ class Parkhalle
         this.ctx = canvasZeichnen();
         this.plaetzeEinfuegen(anzahl);
         this.update();
+        
     }
 
 
@@ -12,17 +13,7 @@ class Parkhalle
     {
         let p1 = new Parkplatz(x,y,id);
         parkplaetze.push(p1);
-        this.knopfZeichnen(x,y);
-        console.log(y);
-    }
-
-    knopfZeichnen(x,y)
-    {
-        var button = document.createElement("button");
-        button.className = "button button1"
-        button.style.top = "50px";
-        button.style.left = "200px";
-        document.body.appendChild(button);
+        p1.knopfZeichnen(id);
     }
 
     plaetzeEinfuegen(anzahl)
@@ -59,9 +50,8 @@ class Parkhalle
         self =this;
         setInterval(function()
                     {
-                        //self.farbeÄndern();
                         self.plaetzeZeichnen();
                     }
-        ,1000)
+        ,500)
     }
 }
