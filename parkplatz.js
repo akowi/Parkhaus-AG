@@ -26,8 +26,6 @@ class Parkplatz
         return farbe;
     }
 
-    
-
     platzZeichnen(x,y,ctx)
     {
         this.ctx = ctx;
@@ -38,4 +36,33 @@ class Parkplatz
         ctx.stroke();
         ctx.fill();
     }
+
+    farbeÄndern()
+    {
+        if(this.frei)
+        {
+            this.frei = false;
+        }
+        else
+        {
+            this.frei = true;
+        }
+    }
+
+    knopfZeichnen(id)
+    {
+        var button = document.createElement("button");
+        button.className = "button button1"
+        button.style.top = this.y.toString()+"px";
+        button.style.left = this.x.toString()+"px";
+        button.id = id.toString() +"b";
+        document.body.appendChild(button);
+        var self = this;
+        button.onclick = function()
+        {
+            self.farbeÄndern();
+        }
+    }
+
+
 }
