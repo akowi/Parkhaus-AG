@@ -6,7 +6,7 @@ class Parkplatz
         this.y = y;
         this.id = id;
         this.frei=true;
-        console.log("POG");
+        //console.log("POG");
 
     }
 

@@ -12,16 +12,18 @@ class Parkhalle
     {
         let p1 = new Parkplatz(x,y,id);
         parkplaetze.push(p1);
+        this.knopfZeichnen(x,y);
+        console.log(y);
     }
 
-    /*knopfZeichnen(x,y)
+    knopfZeichnen(x,y)
     {
         var button = document.createElement("button");
-        button.className = "button button1";
-        button.style.top = y;
-        button.style.left = x;
+        button.className = "button button1"
+        button.style.top = "50px";
+        button.style.left = "200px";
         document.body.appendChild(button);
-    }*/
+    }
 
     plaetzeEinfuegen(anzahl)
     {
