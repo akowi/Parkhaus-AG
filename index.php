@@ -34,12 +34,14 @@
 </style>
 </head>
 <body>
+
     <?php
     include 'db_verbindung.php';
     $verb = verbindungHerstellen();
-    echo "Connected Successfully";
+    //echo "Connected Successfully";
     verbindungSchliessen($verb);
     ?>
+
     <script src="parkplatz.js"></script>
     <script src="parkhalle.js"></script>
     <script src="main.js"></script>
