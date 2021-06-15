@@ -43,8 +43,6 @@ class Parkhalle
         }
     }
 
-
-
    update()
     {
         self =this;
