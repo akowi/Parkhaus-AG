@@ -36,16 +36,14 @@
 <body>
 
     <?php
-    include 'db_verbindung.php';
-    $verb = verbindungHerstellen();
-    //echo "Connected Successfully";
-    verbindungSchliessen($verb);
+    
     ?>
 
+    <script type="text/javascript"></script>
     <script src="parkplatz.js"></script>
     <script src="parkhalle.js"></script>
     <script src="main.js"></script>
-    <!--button id = "button" class="button button1">Freistellen</button-->
+    //<!--button id = "button" class="button button1">Freistellen</button-->
     
 </body>
 </html>
