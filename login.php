@@ -6,7 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .button{
+        width: 150px;
+        height: 100px;
+        border:black;
+        color: black;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: incline-block;
+        font-size: 16px;
+        margin: 6px 8px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    .button1 {
+        background-color: blueviolet;
+        color: black;
+        border: black;
+    }
+</style>
 <body>
+    <input type=text>
+    <button class= "button button1" onclick=""></button>
+    <script type="javascript/text">
+
+    </script>
+
     <?php
         include 'db_verbindung.php';
         $verb = verbindungHerstellen();
@@ -28,6 +55,5 @@
             echo("POGCHAMP");
         }
     ?>
-    <script src="login.js"></script>
 </body>
 </html>
