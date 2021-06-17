@@ -1,0 +1,24 @@
+<?php
+include 'db_verbindung.php';
+$verb = verbindungHerstellen();
+$id = $_POST['ID'];  
+$passwort = $_POST['Passwort'];  
+
+
+$id = stripcslashes($id);  
+$passwort = stripcslashes($passwort);  
+$id = mysqli_real_escape_string($verb, $id);  
+$passwort = mysqli_real_escape_string($verb, $passwort);  
+      
+$sql = "SELECT ID,Passwort FROM BENUTZER WHERE EXISTS 
+(SELECT ID,Passwort FROM BENUTZER WHERE ID = $id AND Passwort = '$passwort')";
+$ergebnis = $verb->query($sql) or die($verb->error);;
+
+while($row = $ergebnis->fetch_assoc()) 
+{
+    echo "id: " . $row["ID"]. " - Passwort: " . $row["Passwort"]. "<br>";
+}
+
+verbindungSchliessen($verb);
+
+?>

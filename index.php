@@ -43,7 +43,7 @@
     <script src="parkplatz.js"></script>
     <script src="parkhalle.js"></script>
     <script src="main.js"></script>
-    //<!--button id = "button" class="button button1">Freistellen</button-->
+    <!--button id = "button" class="button button1">Freistellen</button-->
     
 </body>
 </html>

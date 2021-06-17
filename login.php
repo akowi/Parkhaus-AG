@@ -8,8 +8,8 @@
 </head>
 <style>
     .button{
-        width: 150px;
-        height: 100px;
+        width: 50px;
+        height: 50px;
         border:black;
         color: black;
         padding: 16px 32px;
@@ -28,32 +28,15 @@
     }
 </style>
 <body>
-    <input type=text>
-    <button class= "button button1" onclick=""></button>
-    <script type="javascript/text">
 
-    </script>
-
-    <?php
-        include 'db_verbindung.php';
-        $verb = verbindungHerstellen();
-        $id = 1234;
-        $passwort  = 'poggers';
-        $sql = "SELECT ID,Passwort FROM BENUTZER WHERE EXISTS 
-        (SELECT ID,Passwort FROM BENUTZER WHERE ID = 1234 AND Passwort = 'poggers')";
-        $ergebnis = $verb->query($sql) or die($verb->error);;
-
-            while($row = $ergebnis->fetch_assoc()) 
-            {
-              echo "id: " . $row["ID"]. " - Passwort: " . $row["Passwort"]. "<br>";
-            }
-        
-        verbindungSchliessen($verb);
-
-        if($ergebnis)
-        {
-            echo("POGCHAMP");
-        }
-    ?>
+    <form action="/verifizierung.php" method="post">
+    <label>ID</label><br>
+    <input type=text name='ID'><br>
+    <label>Passwort</label><br>
+    <input type=password name='Passwort'><br>
+    <input type=submit value=Login>
+    <!--<button class= "button button1" onclick=""></button>-->
+    </form>
+    
 </body>
 </html>
