@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .button{
+        width: 50px;
+        height: 50px;
+        border:black;
+        color: black;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: incline-block;
+        font-size: 16px;
+        margin: 6px 8px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    .button1 {
+        background-color: blueviolet;
+        color: black;
+        border: black;
+    }
+</style>
+<body>
+
+    <form name=f1 action="/verifizierung.php" onsubmit="return validation()" method="post">
+    <label>ID</label><br>
+    <input type=text id='ID' name='ID'><br>
+    <label>Passwort</label><br>
+    <input type=password id='Passwort'name='Passwort'><br>
+    <input type=submit value=Login>
+    <!--<button class= "button button1" onclick=""></button>-->
+    </form>
+
+    <script>  
+        function validation()  
+        {  
+            var id=document.f1.ID.value;  
+            var ps=document.f1.Passwort.value;  
+            if(id.length=="" && ps.length=="") {  
+                alert("User Name and Password fields are empty");  
+                return false;  
+            }  
+            else  
+            {  
+                if(id.length=="") {  
+                    alert("User Name is empty");  
+                    return false;  
+                }   
+                if (ps.length=="") {  
+                alert("Password field is empty");  
+                return false;  
+                }  
+            }                             
+        }  
+    </script>  
+</body>
+</html>
