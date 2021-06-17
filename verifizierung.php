@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'db_verbindung.php';
 $verb = verbindungHerstellen();
 $id = $_POST['ID'];  
@@ -12,13 +13,25 @@ $passwort = mysqli_real_escape_string($verb, $passwort);
       
 $sql = "SELECT ID,Passwort FROM BENUTZER WHERE EXISTS 
 (SELECT ID,Passwort FROM BENUTZER WHERE ID = $id AND Passwort = '$passwort')";
-$ergebnis = $verb->query($sql) or die($verb->error);;
+$ergebnis = $verb->query($sql) or die($verb->error);
+$anzahl = mysqli_num_rows($ergebnis);
 
-while($row = $ergebnis->fetch_assoc()) 
+if($anzahl==1)
 {
-    echo "id: " . $row["ID"]. " - Passwort: " . $row["Passwort"]. "<br>";
-}
+    session_regenerate_id();
+    $_SESSION['eingeloggt']= true;
+    $_SESSION['id']= $id;
 
+    while($row = $ergebnis->fetch_assoc()) 
+    {
+        echo "id: " . $row["ID"]. " - Passwort: " . $row["Passwort"]. "<br>";
+    }
+}
+else
+{
+    header("Location:index.html",true,301);
+    exit();
+}
 verbindungSchliessen($verb);
 
 ?>

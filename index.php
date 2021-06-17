@@ -1,3 +1,13 @@
+<?php
+session_start();
+echo($_SESSION['eingeloggt']);
+if (!isset($_SESSION['eingeloggt'])) 
+{
+	header('Location: index.html');
+	exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,10 +44,6 @@
 </style>
 </head>
 <body>
-
-    <?php
-    
-    ?>
 
     <script type="text/javascript"></script>
     <script src="parkplatz.js"></script>
