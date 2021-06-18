@@ -7,11 +7,10 @@ class Parkhalle
         this.update();
         this.parkplatzZuweisen();
     }
-
-
-    platzEinfuegen(x,y,id)
+    
+    platzEinfuegen(x,y,id,frei)
     {
-        let p1 = new Parkplatz(x,y,id);
+        let p1 = new Parkplatz(x,y,id,frei);
         parkplaetze.push(p1);
         p1.knopfZeichnen(id);
     }
@@ -28,7 +27,20 @@ class Parkhalle
                 var hoehe = 100;
                 var x = 200+500*n;
                 var y = 50 + i*hoehe;
-                this.platzEinfuegen(x,y,i+n*(quotient + rest));
+                var frei;
+                var name = "p"+(i+10*n).toString();
+
+                if(localStorage.getItem(name)==null)
+                {
+                    frei = true
+                }
+                else
+                {
+                    status = localStorage.getItem(name);
+                    frei = this.istFrei(status);
+                }
+
+                this.platzEinfuegen(x,y,i+n*(quotient + rest),frei);
             }
         }
     }
@@ -73,14 +85,55 @@ class Parkhalle
             }
         }
     }
-        
+    
+    istFrei(status)
+    {
+        if(status == "frei")
+        {
+            return true;
+        }
+        else if(status == "unfrei")
+        {
+            return false;
+        }
+    }
 
-   update()
+    plaetzeSpeichern()
+    {
+        for(var i=0;i<parkplaetze.length;i++)
+        {
+            var name = "p"+i.toString();
+            var status;
+            if(parkplaetze[i].frei)
+            {
+                status = "frei"
+            }
+            else
+            {
+                status = "unfrei";
+            }
+            localStorage.setItem(name,status);
+        }
+    }
+
+    plaetzeAuffrischen()
+    {
+        for(var i=0;i<parkplaetze.length;i++)
+        {
+            var name = "p"+i.toString();
+            var status = localStorage.getItem(name);
+            parkplaetze[i].frei = this.istFrei(status);
+        }
+    }
+
+    update()
     {
         self =this;
         setInterval(function()
                     {
                         self.plaetzeZeichnen();
+                        self.plaetzeSpeichern();     
+                        self.plaetzeAuffrischen();                
                     }
         ,500)
     }

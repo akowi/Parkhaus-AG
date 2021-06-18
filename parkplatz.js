@@ -1,11 +1,11 @@
 class Parkplatz
 {
-    constructor(x,y,id)
+    constructor(x,y,id,frei)
     {
         this.x = x;
         this.y = y;
         this.id = id;
-        this.frei=true;
+        this.frei=frei;
     }
 
 
@@ -65,6 +65,4 @@ class Parkplatz
             
         }
     }
-
-
 }
