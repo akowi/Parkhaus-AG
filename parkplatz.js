@@ -6,8 +6,6 @@ class Parkplatz
         this.y = y;
         this.id = id;
         this.frei=true;
-        //console.log("POG");
-
     }
 
 
@@ -60,7 +58,11 @@ class Parkplatz
         var self = this;
         button.onclick = function()
         {
-            self.farbeÄndern();
+            if(admin)
+            {
+                self.farbeÄndern();
+            }
+            
         }
     }
 
