@@ -11,4 +11,5 @@ function canvasZeichnen()
 
 var parkplaetze = new Array();
 let parkhalle = new Parkhalle(20);
-//alert("benutzer:" + benutzer);
+//alert("admin:" + admin);
+

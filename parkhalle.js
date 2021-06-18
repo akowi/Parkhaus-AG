@@ -5,7 +5,7 @@ class Parkhalle
         this.ctx = canvasZeichnen();
         this.plaetzeEinfuegen(anzahl);
         this.update();
-        
+        this.parkplatzZuweisen();
     }
 
 
@@ -42,6 +42,38 @@ class Parkhalle
             parkplaetze[n].platzZeichnen(x,y,this.ctx);
         }
     }
+
+   parkplatzZuweisen()
+   {
+        var knopf = document.createElement("button");
+        knopf.className = "button button2"
+        knopf.textContent = "Parkplatz zuweisen";
+        document.body.appendChild(knopf);
+
+        knopf.onclick =  function()
+        {
+            if(admin)
+            {
+                    for(var i=0;i<parkplaetze.length;i++)
+                    {
+                            if(parkplaetze[i].frei)
+                            {
+                                    parkplaetze[i].frei = false;
+                                    alert("Ihnen wurde der Parkplatz " + (i+1).toString() + " zugewiesen");
+                                    break;
+                            }
+
+                            if(i==parkplaetze.length-1)
+                            {
+                                alert("Kein Platz verfügbar :(");
+                            }
+                    }
+
+                    
+            }
+        }
+    }
+        
 
    update()
     {

@@ -1,11 +1,11 @@
 <?php
 session_start();
-echo($_SESSION['eingeloggt']);
 if (!isset($_SESSION['eingeloggt'])) 
 {
 	header('Location: index.html');
 	exit;
 }
+$admin = $_SESSION['admin']["Admin"];
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +20,6 @@ if (!isset($_SESSION['eingeloggt']))
     .button{
         width: 150px;
         height: 100px;
-        border:transparent;
-        color: transparent;
         padding: 16px 32px;
         text-align: center;
         text-decoration: none;
@@ -30,6 +28,7 @@ if (!isset($_SESSION['eingeloggt']))
         margin: 6px 8px;
         transition-duration: 0.4s;
         cursor: pointer;
+        outline: 0;
     }
     .button1 {
         background-color: transparent;
@@ -41,11 +40,28 @@ if (!isset($_SESSION['eingeloggt']))
         background-color: rgba(255,255,255,0.5);
         color: none;
     }
+    .button2 {
+        background-color: lightgray;
+        color: black;
+        border: 2px solid black;
+        border-radius: 8px;
+        position: absolute;
+        top: 100px;
+        left: 1200px;
+    }
+    .button2:hover {
+        background-color: rgba(255,255,255,0.5);
+        color: black;
+    }
 </style>
 </head>
 <body>
 
-    <script type="text/javascript"></script>
+    <php?
+    
+    ?>
+
+    <script type="text/javascript">var admin = "<?= $admin ?>";</script>
     <script src="parkplatz.js"></script>
     <script src="parkhalle.js"></script>
     <script src="main.js"></script>
