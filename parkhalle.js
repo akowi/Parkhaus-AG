@@ -2,10 +2,12 @@ class Parkhalle
 {
     constructor(anzahl)
     {
+        this.anzahl = anzahl;
         this.ctx = canvasZeichnen();
         this.plaetzeEinfuegen(anzahl);
         this.update();
         this.parkplatzZuweisen();
+        console.log(admin);
     }
     
     platzEinfuegen(x,y,id,frei)
@@ -28,16 +30,15 @@ class Parkhalle
                 var x = 200+500*n;
                 var y = 50 + i*hoehe;
                 var frei;
-                var name = "p"+(i+10*n).toString();
 
-                if(localStorage.getItem(name)==null)
+                if(text==null)
                 {
                     frei = true
                 }
                 else
                 {
-                    status = localStorage.getItem(name);
-                    frei = this.istFrei(status);
+                    var status = this.textParsen();
+                    frei = this.istFrei(status[i+10*n]);
                 }
 
                 this.platzEinfuegen(x,y,i+n*(quotient + rest),frei);
@@ -71,6 +72,7 @@ class Parkhalle
                             if(parkplaetze[i].frei)
                             {
                                     parkplaetze[i].frei = false;
+                                    aenderung = true;
                                     alert("Ihnen wurde der Parkplatz " + (i+1).toString() + " zugewiesen");
                                     break;
                             }
@@ -83,24 +85,24 @@ class Parkhalle
 
                     
             }
-        }
+        }  
     }
     
     istFrei(status)
     {
-        if(status == "frei")
+        if(status == 1)
         {
             return true;
         }
-        else if(status == "unfrei")
+        else if(status == 0)
         {
             return false;
         }
     }
 
-    plaetzeSpeichern()
+    plaetzeSpeichern(callback)
     {
-        for(var i=0;i<parkplaetze.length;i++)
+        /*for(var i=0;i<parkplaetze.length;i++)
         {
             var name = "p"+i.toString();
             var status;
@@ -113,16 +115,97 @@ class Parkhalle
                 status = "unfrei";
             }
             localStorage.setItem(name,status);
-        }
+        }*/
+        var self=this;
+        $.ajax({
+            url: "speichern.php",
+            method: "post",
+            async: true,
+            data: { park : JSON.stringify(parkplaetze)},
+            success: function(res){
+                    //console.log(res);
+            }
+          })
     }
 
     plaetzeAuffrischen()
     {
-        for(var i=0;i<parkplaetze.length;i++)
+        /*for(var i=0;i<parkplaetze.length;i++)
         {
             var name = "p"+i.toString();
             var status = localStorage.getItem(name);
             parkplaetze[i].frei = this.istFrei(status);
+        }*/
+
+        var frei = this.textParsen();
+        for(var i=0;i<parkplaetze.length;i++)
+        {
+            status = frei[i];
+            if(parkplaetze[i].frei != this.istFrei(status))
+            {
+                parkplaetze[i].frei = this.istFrei(status);
+            }
+            //console.log(parkplaetze[i].frei);
+        }
+        
+    }
+
+    textParsen()
+    {
+        var request=$.ajax({
+            url: "lesen.php",
+            method: "get",
+            async: true,
+            success: function(res){
+                
+                    //console.log(res);     
+                    text = res;        
+            }
+            })
+    
+        var id = new Array();
+        var frei = new Array();
+
+        if(text == null)
+        {
+            for(var i=0;i<this.anzahl;i++)
+            {
+                frei[i] = 1;
+            }
+        }
+
+        else
+        {
+            var split = text.split(" ");
+            //console.log(split[1]);
+            
+            for(var i=0;i<split.length-1;i++)
+            {
+                if(i % 2 == 0)
+                {
+                    id.push(split[i])
+                }
+                else
+                {
+                    frei.push(split[i]);
+                }
+            }
+        }
+        
+        for(var i=0;i<id.length-1;i++)
+        {
+           // console.log(id[i]+" "+frei[i]);
+        }
+        
+        return frei;
+    }
+
+    aenderung()
+    {
+        if(aenderung)
+        {
+            aenderung = false;
+            this.plaetzeSpeichern();
         }
     }
 
@@ -131,10 +214,10 @@ class Parkhalle
         self =this;
         setInterval(function()
                     {
-                        self.plaetzeZeichnen();
-                        self.plaetzeSpeichern();     
-                        self.plaetzeAuffrischen();                
+                        self.aenderung(); 
+                        self.plaetzeAuffrischen();   
+                        self.plaetzeZeichnen();   
                     }
-        ,500)
+        ,100)
     }
 }
