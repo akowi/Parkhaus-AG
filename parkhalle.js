@@ -7,7 +7,6 @@ class Parkhalle
         this.plaetzeEinfuegen(anzahl);
         this.update();
         this.parkplatzZuweisen();
-        console.log(admin);
     }
     
     platzEinfuegen(x,y,id,frei)
@@ -65,18 +64,38 @@ class Parkhalle
 
         knopf.onclick =  function()
         {
-            
-            for(var i=0;i<parkplaetze.length;i++)
+
+            var alt_parkplaetze = new Array();
+
+            for(var i=0;i<Math.round(parkplaetze.length*0.5);i++)
             {
-                    if(parkplaetze[i].frei)
+                alt_parkplaetze.push(parkplaetze[i]);
+                if(parkplaetze[i+10] != null)
+                {
+                    alt_parkplaetze.push(parkplaetze[i+10]);
+                }
+            }
+            for(var i=0;i<alt_parkplaetze.length;i++)
+            {
+                    if(alt_parkplaetze[i].frei)
                     {
-                            parkplaetze[i].frei = false;
-                            aenderung = true;
-                            alert("Ihnen wurde der Parkplatz " + (i+1).toString() + " zugewiesen");
-                            break;
+                        alt_parkplaetze[i].frei = false;
+                        if(i % 2 == 0)
+                        {
+                            parkplaetze[i*0.5].frei = false;
+                            alert("Ihnen wurde der Parkplatz " + (i*0.5+1).toString() + " zugewiesen");
+                        }
+                        else
+                        {
+                            parkplaetze[i+9-(i-1)*0.5].frei = false;
+                            alert("Ihnen wurde der Parkplatz " + (i+9-(i-1)*0.5+1).toString() + " zugewiesen");
+                        }    
+
+                        aenderung = true;
+                        break;
                     }
 
-                    if(i==parkplaetze.length-1)
+                    if(i==alt_parkplaetze.length-1)
                     {
                         alert("Kein Platz verfügbar :(");
                     }
