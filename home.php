@@ -53,19 +53,42 @@ $admin = $_SESSION['admin']["Admin"];
         background-color: rgba(255,255,255,0.5);
         color: black;
     }
+    .form{
+        position: absolute;
+        top: 250px;
+        left: 1250px;
+    }
 </style>
 </head>
 <body>
 
-    <php?
-    
-    ?>
+    <form class="form" action="abmelden.php" method="POST">
+    <input type="submit" value="Abmelden"/>
+    </form>
 
-    <script type="text/javascript">var admin = "<?= $admin ?>";</script>
+    <?php
+      $myfile = fopen("test.txt","r");
+      if(filesize("test.txt") > 0)
+      {
+        $text = fread($myfile,filesize("test.txt"));
+        //print_r($text);
+      }
+      else
+      {
+        $text = null;
+      }
+      fclose($myfile);
+    ?>
+    <script type="text/javascript">
+    var admin = "<?= $admin ?>";
+    var text = "<?= $text ?>";
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="parkplatz.js"></script>
     <script src="parkhalle.js"></script>
     <script src="main.js"></script>
     <!--button id = "button" class="button button1">Freistellen</button-->
+    
     
 </body>
 </html>

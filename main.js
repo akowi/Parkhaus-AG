@@ -9,7 +9,22 @@ function canvasZeichnen()
         return ctx;
 }
 
+var aenderung = false;
 var parkplaetze = new Array();
 let parkhalle = new Parkhalle(20);
 //alert("admin:" + admin);
+
+/*function callPhp()
+{
+        $.ajax({
+                url: "test.php",
+                method: "post",
+                data: { obj : JSON.stringify(parkplaetze)},
+                success: function(res){
+                        //console.log(res);
+                }
+              })
+}       
+
+callPhp();*/
 

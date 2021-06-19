@@ -11,8 +11,7 @@ $passwort = stripcslashes($passwort);
 $id = mysqli_real_escape_string($verb, $id);  
 $passwort = mysqli_real_escape_string($verb, $passwort);  
       
-$sql = "SELECT ID,Passwort FROM BENUTZER WHERE EXISTS 
-(SELECT ID,Passwort FROM BENUTZER WHERE ID = $id AND Passwort = '$passwort')";
+$sql = "SELECT ID,Passwort FROM BENUTZER WHERE ID = $id AND Passwort = '$passwort'";
 $ergebnis = $verb->query($sql) or die($verb->error);
 $anzahl = mysqli_num_rows($ergebnis);
 

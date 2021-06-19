@@ -27,16 +27,21 @@ class Parkplatz
     platzZeichnen(x,y,ctx)
     {
         this.ctx = ctx;
+        var breite = 150;
+        var hoehe = 100;
+        
         ctx.beginPath();
         ctx.fillStyle = this.farbeBestimmen();
         ctx.lineWidth = 10;
-        ctx.rect(x, y, 150, 100);
+        ctx.rect(x, y, breite, hoehe);
         ctx.stroke();
         ctx.fill();
+        ctx.closePath();
     }
 
     farbeÄndern()
     {
+        aenderung = true;
         if(this.frei)
         {
             this.frei = false;
@@ -54,15 +59,29 @@ class Parkplatz
         button.style.top = this.y.toString()+"px";
         button.style.left = this.x.toString()+"px";
         button.id = id.toString() +"b";
+        button.textContent = id+1;
         document.body.appendChild(button);
         var self = this;
         button.onclick = function()
         {
-            if(admin)
+            if(admin==1)
             {
                 self.farbeÄndern();
             }
             
         }
+        aenderung = true;
+    }
+
+    idZeigen(x,y,ctx)
+    {
+        this.ctx = ctx;
+        ctx.beginPath();
+        ctx.fillStyle = rgba(255, 255, 255, 0.5);
+        ctx.lineWidth = 0;
+        ctx.rect(x, y, 25, 25);
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
     }
 }
