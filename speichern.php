@@ -18,7 +18,7 @@ foreach($data as $i)
     $text .= " ";
 }
 
-$myfile = fopen("test.txt","w");
+$myfile = fopen("daten.txt","w");
 fwrite($myfile, $text);
 fclose($myfile);
 ?>

@@ -73,15 +73,4 @@ class Parkplatz
         aenderung = true;
     }
 
-    idZeigen(x,y,ctx)
-    {
-        this.ctx = ctx;
-        ctx.beginPath();
-        ctx.fillStyle = rgba(255, 255, 255, 0.5);
-        ctx.lineWidth = 0;
-        ctx.rect(x, y, 25, 25);
-        ctx.stroke();
-        ctx.fill();
-        ctx.closePath();
-    }
 }

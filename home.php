@@ -67,10 +67,10 @@ $admin = $_SESSION['admin']["Admin"];
     </form>
 
     <?php
-      $myfile = fopen("test.txt","r");
-      if(filesize("test.txt") > 0)
+      $myfile = fopen("daten.txt","r");
+      if(filesize("daten.txt") > 0)
       {
-        $text = fread($myfile,filesize("test.txt"));
+        $text = fread($myfile,filesize("daten.txt"));
         //print_r($text);
       }
       else

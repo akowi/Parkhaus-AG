@@ -65,26 +65,25 @@ class Parkhalle
 
         knopf.onclick =  function()
         {
-            if(admin)
+            
+            for(var i=0;i<parkplaetze.length;i++)
             {
-                    for(var i=0;i<parkplaetze.length;i++)
+                    if(parkplaetze[i].frei)
                     {
-                            if(parkplaetze[i].frei)
-                            {
-                                    parkplaetze[i].frei = false;
-                                    aenderung = true;
-                                    alert("Ihnen wurde der Parkplatz " + (i+1).toString() + " zugewiesen");
-                                    break;
-                            }
-
-                            if(i==parkplaetze.length-1)
-                            {
-                                alert("Kein Platz verfügbar :(");
-                            }
+                            parkplaetze[i].frei = false;
+                            aenderung = true;
+                            alert("Ihnen wurde der Parkplatz " + (i+1).toString() + " zugewiesen");
+                            break;
                     }
 
-                    
+                    if(i==parkplaetze.length-1)
+                    {
+                        alert("Kein Platz verfügbar :(");
+                    }
             }
+
+                    
+            
         }  
     }
     
