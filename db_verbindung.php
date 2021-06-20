@@ -1,5 +1,7 @@
 <?php
 
+// Es wird eine Verbindung zwischen die Software und die Datenbank hergestellt.
+
 function verbindungHerstellen()
  {
    $dbhost = "sql11.freemysqlhosting.net";

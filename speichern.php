@@ -1,9 +1,11 @@
 <?php
-$rawdata = $_POST['park'];
-$data = json_decode($rawdata);
-//print_r($data);
+
+// Die Daten, die vom Javascript-Skript gesendet werden, werden hier gelesen und in die Datei "daten.txt" übertragen.
+
+$rohdaten = $_POST['park'];
+$daten = json_decode($rohdaten);
 $text ="";
-foreach($data as $i)
+foreach($daten as $i)
 {
     $text .= strval($i->id);
     $text .= " ";
@@ -18,7 +20,7 @@ foreach($data as $i)
     $text .= " ";
 }
 
-$myfile = fopen("daten.txt","w");
-fwrite($myfile, $text);
-fclose($myfile);
+$datei = fopen("daten.txt","w");
+fwrite($datei, $text);
+fclose($datei);
 ?>

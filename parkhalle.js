@@ -16,6 +16,8 @@ class Parkhalle
         p1.knopfZeichnen(id);
     }
 
+    // Es wird jedem Parkplatz die richtige Position zugeordnet, sowie eine ID. Außerdem wird es aus der Datei "daten.txt" gelesen, ob jeder Platz frei ist oder nicht.
+
     plaetzeEinfuegen(anzahl)
     {
         var quotient = Math.floor(anzahl/2);
@@ -45,6 +47,9 @@ class Parkhalle
         }
     }
 
+
+    // Jeder Parkplatz wird in seiner entsprechenden Position gezeichnet.
+
     plaetzeZeichnen()
     {
         for(var n=0;n<parkplaetze.length;n++)
@@ -54,6 +59,12 @@ class Parkhalle
             parkplaetze[n].platzZeichnen(x,y,this.ctx);
         }
     }
+
+    // Es wird ein Knopf erstellt, der dem User genau den Parkplatz zuweist, der sich am Weitesten hinten befindet. Da diese Software für eine Firma gedacht ist, befindet sich
+    // der Eingang ins Gebäude vermutlich ganz hinten. Deshalb sollten die Angestellter, die früher als Andere ankommen, diese Plätze bekommen.
+
+    // Um dies zu ermöglichen, wird der Array "parkplaetze" umgeordnet, sodass die Parkplätze sich in folgende Reihenfolge befinden: 1, 11, 2, 12, 3, 13...
+    // Danach wird der richtige Parkplatz identifiziert und dem User zugeordnet.
 
    parkplatzZuweisen()
    {
@@ -118,43 +129,26 @@ class Parkhalle
         }
     }
 
-    plaetzeSpeichern(callback)
+    // Durch eine sogenannte "AJAX-Datenübertragung" werden die Daten jedes Parkplatzes an der Datei "speichern.php" gesendet.
+    // Da Objekte meistens im JSON-Format ist, werden sie in einen String umgewandelt.
+
+    plaetzeSpeichern()
     {
-        /*for(var i=0;i<parkplaetze.length;i++)
-        {
-            var name = "p"+i.toString();
-            var status;
-            if(parkplaetze[i].frei)
-            {
-                status = "frei"
-            }
-            else
-            {
-                status = "unfrei";
-            }
-            localStorage.setItem(name,status);
-        }*/
-        var self=this;
         $.ajax({
             url: "speichern.php",
             method: "post",
             async: true,
             data: { park : JSON.stringify(parkplaetze)},
             success: function(res){
-                    //console.log(res);
+                    
             }
           })
     }
 
+    // Die Daten jedes Parkplatzes werden aus der Datei "daten.txt" gelesen und in die wirklichen Objekte übertragen.
+
     plaetzeAuffrischen()
     {
-        /*for(var i=0;i<parkplaetze.length;i++)
-        {
-            var name = "p"+i.toString();
-            var status = localStorage.getItem(name);
-            parkplaetze[i].frei = this.istFrei(status);
-        }*/
-
         var frei = this.textParsen();
         for(var i=0;i<parkplaetze.length;i++)
         {
@@ -163,20 +157,21 @@ class Parkhalle
             {
                 parkplaetze[i].frei = this.istFrei(status);
             }
-            //console.log(parkplaetze[i].frei);
         }
         
     }
 
+    // Die Daten jedes Parkplatzes werden aus der Datei "daten.txt" gelesen. 
+    // Dabei wird seinen Zustand (ob sie besetzt sind oder nicht) in einem anderen Array gespeichert, das auch zurückgegeben wird.
+
     textParsen()
     {
-        var request=$.ajax({
+        $.ajax({
             url: "lesen.php",
             method: "get",
             async: true,
             success: function(res){
-                
-                    //console.log(res);     
+                  
                     text = res;        
             }
             })
@@ -195,7 +190,6 @@ class Parkhalle
         else
         {
             var split = text.split(" ");
-            //console.log(split[1]);
             
             for(var i=0;i<split.length-1;i++)
             {
@@ -209,14 +203,11 @@ class Parkhalle
                 }
             }
         }
-        
-        for(var i=0;i<id.length-1;i++)
-        {
-           // console.log(id[i]+" "+frei[i]);
-        }
-        
+         
         return frei;
     }
+
+    // Wenn es irgendeine Änderung beim Attribut "frei" der Parkplätze gibt, wird diese Methode aufgerufen, damit diese Änderung gespeichert wird.
 
     aenderung()
     {
@@ -226,6 +217,8 @@ class Parkhalle
             this.plaetzeSpeichern();
         }
     }
+
+    // Alle Methoden, die sich in update() befinden, werden jede 100 Millisekunden aufgerufen.
 
     update()
     {

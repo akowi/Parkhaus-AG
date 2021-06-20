@@ -1,4 +1,8 @@
 <?php
+
+// Falls der User sich noch nicht eingeloggt hat, wird er auf die Anmeldeseite weitergeleitet.
+// Außerdem wird es in einer Variable gespeichert, ob der User ein Administrator ist oder nicht.
+
 session_start();
 if (!isset($_SESSION['eingeloggt'])) 
 {
@@ -15,6 +19,9 @@ $admin = $_SESSION['admin']["Admin"];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkhaus</title>
+
+
+<!-- Die grundlegenden Eigenschaften der Knöpfe und Formulare werden hier bestimmt-->
 
 <style>
     .button{
@@ -67,17 +74,19 @@ $admin = $_SESSION['admin']["Admin"];
     </form>
 
     <?php
-      $myfile = fopen("daten.txt","r");
+
+    // Die Inhalte der Datei "daten.txt" werden in einer Variable gespeichert, um sie später in Javascript benuzten zu können.
+
+      $datei = fopen("daten.txt","r");
       if(filesize("daten.txt") > 0)
       {
-        $text = fread($myfile,filesize("daten.txt"));
-        //print_r($text);
+        $text = fread($datei,filesize("daten.txt"));
       }
       else
       {
         $text = null;
       }
-      fclose($myfile);
+      fclose($datei);
     ?>
     <script type="text/javascript">
     var admin = "<?= $admin ?>";
@@ -87,7 +96,6 @@ $admin = $_SESSION['admin']["Admin"];
     <script src="parkplatz.js"></script>
     <script src="parkhalle.js"></script>
     <script src="main.js"></script>
-    <!--button id = "button" class="button button1">Freistellen</button-->
     
     
 </body>

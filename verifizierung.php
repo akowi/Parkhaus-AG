@@ -1,10 +1,14 @@
 <?php
+
+// Hier wird überpruft, ob die eingegebe Daten eigentlich den Daten eines Users in der Datenbank entsprechen.
+
 session_start();
 include 'db_verbindung.php';
 $verb = verbindungHerstellen();
 $id = $_POST['ID'];  
 $passwort = $_POST['Passwort'];  
 
+// Dieser Code dient nur dazu, SQL-Injections zu vermeiden.
 
 $id = stripcslashes($id);  
 $passwort = stripcslashes($passwort);  
@@ -15,6 +19,9 @@ $sql = "SELECT ID,Passwort FROM BENUTZER WHERE ID = $id AND Passwort = '$passwor
 $ergebnis = $verb->query($sql) or die($verb->error);
 $anzahl = mysqli_num_rows($ergebnis);
 
+// Falls der Vorgang erfolgreich ist, werden ein paar sogenannte Sitzung-Variablen, die für die ganze Sitzung ihren Wert behalten, auch wenn man die Seite wiederauffrischt.
+// Wenn die Identifizierung des Users misslingt, dann wird er auf die Anmeldeseite wieder weitergeleitet.
+
 if($anzahl==1)
 {
     session_regenerate_id();
@@ -24,13 +31,8 @@ if($anzahl==1)
     $sql = "SELECT Admin FROM BENUTZER WHERE ID = $id AND Passwort = '$passwort'";
     $ergebnis = $verb->query($sql) or die($verb->error);
     $_SESSION['admin'] = mysqli_fetch_assoc($ergebnis);
-    //echo($_SESSION['admin']["Admin"]);
     
     header("Location:home.php",true,301);
-    /*while($row = $ergebnis->fetch_assoc()) 
-    {
-        echo "id: " . $row["ID"]. " - Passwort: " . $row["Passwort"]. "<br>";
-    }*/
 }
 else
 {

@@ -76,6 +76,9 @@
     <form name=f1 action="/verifizierung.php" onsubmit="return validation()" method="post">
     <div id="div_login">
         <h1>Login</h1>
+
+        <!-- Mehrere Formulare werden für die Eingabe des Users bereitgestellt. -->
+
         <div>
             <input type="text" class="ID" id="ID" name="ID" placeholder="ID" >
         </div>
@@ -86,26 +89,28 @@
             <input type="submit" value="Anmelden" name="but_submit" id="but_submit" >
         </div>
     </div>
-    <!--<button class= "button button1" onclick=""></button>-->
     </form>
 
     <script>  
+
+        // Es wird geprüft, ob der User seine Daten in beiden Feldern eingegeben hat. Ansonsten muss er sie ausfüllen, damit die Anmeldung erfolgreich vorgeht.
+
         function validation()  
         {  
             var id=document.f1.ID.value;  
             var ps=document.f1.Passwort.value;  
             if(id.length=="" && ps.length=="") {  
-                alert("User Name and Password fields are empty");  
+                alert("Bitte geben Sie Ihren Username und Passwort ein");  
                 return false;  
             }  
             else  
             {  
                 if(id.length=="") {  
-                    alert("User Name is empty");  
+                    alert("Bitte geben Sie Ihren Username ein");  
                     return false;  
                 }   
                 if (ps.length=="") {  
-                alert("Password field is empty");  
+                alert("Bitte geben Sie Ihre Passwort ein");  
                 return false;  
                 }  
             }                             

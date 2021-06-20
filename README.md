@@ -1,2 +1,2 @@
 # Parkhaus-AG
-#You've been gnomed
+Die Erklärung zur Funktionsweise jedes Vorgangs der Software finden Sie in den entsprechenden Dateien

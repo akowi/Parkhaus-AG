@@ -1,9 +1,12 @@
 <?php
-$myfile = fopen("daten.txt","r");
+
+// Die Inhalte der Datei "daten.txt" werden durch den Befehl "print_r" an dem Javascript-Code gesendet.
+
+$datei = fopen("daten.txt","r");
 if(filesize("daten.txt") > 0)
 {
-    $text = fread($myfile,filesize("daten.txt"));
+    $text = fread($datei,filesize("daten.txt"));
     print_r($text);
 }
-fclose($myfile);
+fclose($datei);
 ?>

@@ -8,6 +8,7 @@ class Parkplatz
         this.frei=frei;
     }
 
+    // Die Farbe des Parkplatzes wird durch den Wert seines Booleans "frei" bestimmt.
 
     farbeBestimmen()
     {
@@ -42,6 +43,7 @@ class Parkplatz
     farbeÄndern()
     {
         aenderung = true;
+
         if(this.frei)
         {
             this.frei = false;
@@ -51,6 +53,9 @@ class Parkplatz
             this.frei = true;
         }
     }
+
+    // Für jeden Parkplatz wird jeweils ein Knopf erzeugt, der dazu dient, die Farbe dieses Parkplatzes zu verändern, wenn er angeklickt wird.
+    // Dies ist übrigens nur möglich, wenn der User ein Administrator ist.
 
     knopfZeichnen(id)
     {
